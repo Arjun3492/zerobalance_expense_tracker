@@ -1,0 +1,49 @@
+name: zerobalance_expense_calculator
+description: Assignment for internship at zerobalance private limited.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  http: ^0.13.4
+  get: ^4.6.1
+  fl_chart: ^0.55.1
+  flutter_launcher_icons: ^0.10.0
+  flutter_native_splash: ^2.1.6
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/logo.png"
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/logo/logo.png
+  android: true
+  ios: true
+  android12: true
+  android_12:
+    color: "#FFFFFF"
+    image: assets/logo/logo.png
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/logo/
+    - assets/icons/
+
+  

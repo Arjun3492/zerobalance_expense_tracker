@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.04),
                   ExpenditureStats(
-                    home: true,
+                    isHome: true,
                     onClickFunction: () => controller.onClickComplete(),
                   ),
                   SizedBox(height: height * 0.045),

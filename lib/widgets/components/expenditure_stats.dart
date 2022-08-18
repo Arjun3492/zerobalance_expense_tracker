@@ -7,9 +7,9 @@ class ExpenditureStats extends StatelessWidget {
   const ExpenditureStats({
     Key? key,
     required this.onClickFunction,
-    required this.home,
+    required this.isHome,
   }) : super(key: key);
-  final bool home;
+  final bool isHome;
   final Function onClickFunction;
   @override
   Widget build(BuildContext context) {
@@ -19,12 +19,14 @@ class ExpenditureStats extends StatelessWidget {
     final _spots = List<FlSpot>.generate(30, (i) {
       double _expenditure = expenditure().toDouble();
       totalExpenditure += _expenditure;
-      return FlSpot(i.toDouble(), _expenditure);
+      return isHome
+          ? FlSpot(i.toDouble(), _expenditure)
+          : FlSpot(i.toDouble(), totalExpenditure);
     });
 
     return Align(
       child: Container(
-        height: home ? 544 : 566,
+        height: isHome ? 544 : 566,
         decoration: BoxDecoration(
             color: kPrimaryColor,
             boxShadow: [
@@ -67,17 +69,22 @@ class ExpenditureStats extends StatelessWidget {
             SizedBox(
                 width: 340,
                 height: 122,
-                child: LineChart(lineChartData(_spots))),
+                child: LineChart(lineChartData(_spots, isHome))),
             const SizedBox(height: 20),
             const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                "Jan Month's Data",
-                style: TextStyle(fontSize: 12, color: Color(0xffADB4E2)),
-              ),
+            Center(
+              child: isHome
+                  ? const Text(
+                      "Jan Month's Data per day",
+                      style: TextStyle(fontSize: 12, color: Color(0xffADB4E2)),
+                    )
+                  : const Text(
+                      "Jan Month's Total Data ",
+                      style: TextStyle(fontSize: 12, color: Color(0xffADB4E2)),
+                    ),
             ),
             const SizedBox(height: 20),
-            home
+            isHome
                 ? Center(
                     child: Container(
                       width: 312,
@@ -310,7 +317,7 @@ class CardTile extends StatelessWidget {
   }
 }
 
-LineChartData lineChartData(List<FlSpot> spots) {
+LineChartData lineChartData(List<FlSpot> spots, bool isHome) {
   return LineChartData(
     titlesData: FlTitlesData(
       show: false,
@@ -322,7 +329,7 @@ LineChartData lineChartData(List<FlSpot> spots) {
     minX: 0,
     maxX: 30,
     minY: 0,
-    maxY: 550,
+    maxY: isHome ? 550 : 500 * 30,
     lineBarsData: [
       LineChartBarData(
         spots: spots,

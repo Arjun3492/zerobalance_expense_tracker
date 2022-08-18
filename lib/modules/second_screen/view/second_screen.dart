@@ -45,7 +45,7 @@ class SecondScreen extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.04),
                   ExpenditureStats(
-                      home: false,
+                      isHome: false,
                       onClickFunction: () =>
                           controller.onClickAdd(context, width, height)),
                   SizedBox(height: height * 0.045),

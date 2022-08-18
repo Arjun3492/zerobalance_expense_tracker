@@ -58,7 +58,8 @@ class HomeScreen extends StatelessWidget {
                   BlogsSection(width: width, height: height),
                   SizedBox(height: height * 0.03),
                   QuoteSection(width: width),
-                  SizedBox(height: height * 0.03)
+                  //extra spacing for floating bottom bar
+                  SizedBox(height: height * 0.08)
                 ],
               ),
             ),
